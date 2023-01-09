@@ -1,0 +1,10 @@
+.work-image{
+    height: 300px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: .2s linear;
+}
+
+.work-image:hover{
+    transform: scale(1.01);
+}
