@@ -24,6 +24,7 @@ export class TrabajosComponent implements OnInit {
     images: []
   };
 
+  // constructor(private trabajoService: TrabajosService, private toastr: ToastrService, private router: Router,private route: ActivatedRoute) { }
   constructor(private trabajoService: TrabajosService, private toastr: ToastrService, private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
