@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'list-trabajos', component: ListTrabajosComponent, canActivate: [AuthGuard] },
   { path: 'trabajos', component: TrabajosComponent, canActivate: [AuthGuard]},
   { path: 'list-catalogos', component: ListCatalogosComponent, canActivate: [AuthGuard]},
-  
+  { path: 'edit-trabajo/:id', component: TrabajosComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

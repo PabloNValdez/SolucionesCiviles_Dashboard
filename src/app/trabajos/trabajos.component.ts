@@ -21,7 +21,8 @@ export class TrabajosComponent implements OnInit {
     id: 0,
     name: '',
     description: '',
-    images: []
+    images: [],
+    isDeleted: false
   };
 
   // constructor(private trabajoService: TrabajosService, private toastr: ToastrService, private router: Router,private route: ActivatedRoute) { }
@@ -77,8 +78,8 @@ export class TrabajosComponent implements OnInit {
       this.trabajoService.createWork(formData).subscribe(response => {
         this.toastr.success(response.message);
         setTimeout(() => {
-         // this.router.navigate(['/dashboard/list-shops-professionals']);
-        }, 1000);
+          window.location.reload(); 
+        }, 2000);
       }, error => {
         console.log(error);
       });

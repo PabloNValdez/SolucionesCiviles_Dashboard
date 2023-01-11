@@ -22,7 +22,16 @@
             
             <div class="row d-flex justify-content-center">
                 <div class="col-4">
-                    <a [routerLink]="['/edit-trabajo',work[3]]">Modificar/Eliminar</a>
+                    <!-- Me faltan unos iconos para que quede mejor -->
+                    <a [routerLink]="['/edit-trabajo', work.id]" title="Editar">
+                        <span>Editar</span>
+                    </a><br>
+                    <a class="btn-delete" (click)="deleteWork(work.id)" type="button" title="Eliminar" *ngIf="work.isDeleted">
+                        <span>Eliminar</span>
+                    </a><br>
+                    <a class="btn-delete" (click)="enableWork(work)" type="button" title="Habilitar" *ngIf="!work.isDeleted">
+                        <span>Habilitar</span>
+                    </a>
                 </div>
             </div>
         </div>  

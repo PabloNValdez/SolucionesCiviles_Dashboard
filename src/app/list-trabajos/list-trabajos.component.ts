@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TrabajosService } from '../Services/trabajos.service';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 const apiUrl = environment.apiUrl;
 @Component({
@@ -20,7 +21,7 @@ export class ListTrabajosComponent implements OnInit {
   actualImages:Array<any> = [];
   datos: Array<any>=[];
 
-  constructor(private trabajoService: TrabajosService) { }
+  constructor(private trabajoService: TrabajosService, private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.trabajoService.getAllWorks().subscribe(respose =>{
@@ -63,5 +64,34 @@ export class ListTrabajosComponent implements OnInit {
   closeEventHandler() {
     this.showFlag = false;
     this.currentIndex = -1;
+  }
+
+  deleteWork(id) {
+    this.trabajoService.deleteWork(id).subscribe(response => {
+      this.toastrService.success(response.message);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    }, error => {
+      this.toastrService.error(error);
+    })
+  }
+
+  enableWork(work) {
+    const formData = new FormData();
+
+    formData.append('id', work.userId);
+    formData.append('name', work.userName);
+    formData.append('description', work.firstName);
+    formData.append('isDeleted', 'true');
+
+    this.trabajoService.updateWork(formData).subscribe(response => {
+      this.toastrService.success(response.message);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    }, error => {
+      this.toastrService.error(error);
+    })
   }
 }
