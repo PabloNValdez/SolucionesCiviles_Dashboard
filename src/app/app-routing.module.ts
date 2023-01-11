@@ -4,12 +4,13 @@ import { HomeComponent } from './home/home.component';
 import { ListCatalogosComponent } from './list-catalogos/list-catalogos.component';
 import { ListTrabajosComponent } from './list-trabajos/list-trabajos.component';
 import { TrabajosComponent } from './trabajos/trabajos.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'list-trabajos', component: ListTrabajosComponent },
-  { path: 'trabajos', component: TrabajosComponent},
-  { path: 'list-catalogos', component: ListCatalogosComponent},
+  { path: 'list-trabajos', component: ListTrabajosComponent, canActivate: [AuthGuard] },
+  { path: 'trabajos', component: TrabajosComponent, canActivate: [AuthGuard]},
+  { path: 'list-catalogos', component: ListCatalogosComponent, canActivate: [AuthGuard]},
   
 ];
 
