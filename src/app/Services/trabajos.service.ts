@@ -25,6 +25,6 @@ export class TrabajosService {
   }
 
   updateWork(dto): Observable<any>{
-    return this.http.put<Trabajo>(`${API_URL}/api/trabajo/update`, dto);
+    return this.http.post<Trabajo>(`${API_URL}/api/trabajo/update`, dto);
   }
 }

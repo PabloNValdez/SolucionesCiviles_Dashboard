@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TrabajosService } from '../Services/trabajos.service';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import { faL } from '@fortawesome/free-solid-svg-icons';
 
 const apiUrl = environment.apiUrl;
 @Component({
@@ -20,6 +21,7 @@ export class ListTrabajosComponent implements OnInit {
   description: string;
   actualImages:Array<any> = [];
   datos: Array<any>=[];
+  isDeleted: boolean;
 
   constructor(private trabajoService: TrabajosService, private toastrService: ToastrService) { }
 
@@ -37,6 +39,9 @@ export class ListTrabajosComponent implements OnInit {
         this.work[0] = element.name;
         this.work[1] = element.description;
 
+        trabajo[4] = element.isDeleted;
+        this.work[4] = element.isDeleted;
+
         var images:Array<object> = [];
 
         element.imagesDto.forEach(e =>{
@@ -48,6 +53,16 @@ export class ListTrabajosComponent implements OnInit {
         this.work[2] = images;
         trabajo[2]= images;
         trabajo[3] = element.id;
+        trabajo[4] = element.isDeleted
+
+        /*if (trabajo[4] == true) {
+          this.isDeleted = true;
+          console.log('soyDeletedTrue'+this.isDeleted);
+        }else{
+          this.isDeleted = false;
+          console.log('soyDeletedFalse'+this.isDeleted);
+        }*/
+
         this.listOfworks.push(trabajo);
         console.log(this.listOfworks);
         
@@ -79,11 +94,12 @@ export class ListTrabajosComponent implements OnInit {
 
   enableWork(work) {
     const formData = new FormData();
+    console.log(work);
 
-    formData.append('id', work.userId);
-    formData.append('name', work.userName);
-    formData.append('description', work.firstName);
-    formData.append('isDeleted', 'true');
+    formData.append('id', work[3]);
+    formData.append('name', work[0]);
+    formData.append('description', work[1]);
+    formData.append('isDeleted', 'false');
 
     this.trabajoService.updateWork(formData).subscribe(response => {
       this.toastrService.success(response.message);
