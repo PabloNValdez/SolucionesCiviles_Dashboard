@@ -1,0 +1,22 @@
+<div class="modal-body">
+    <div class="container pt-4">
+        <div class="row text-center border-bottom pb-1 border-2">
+            <h3 class="bold modal-title">{{title}}</h3>
+        </div>
+        <div class="row text-center pt-4">
+            <div [outerHTML]="content">
+
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center pt-3 pb-2">
+            <div class="col-8 text-center d-grid">
+                <button type="button" class="btn btn-primary" (click)="confirm()">{{ btnConfirm }}</button>
+            </div> 
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-8 text-center">
+                <button type="button" class="btn btn-secondary" (click)="cancel()">{{ btnCancel }}</button>
+            </div> 
+        </div>
+    </div>
+</div>

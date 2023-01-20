@@ -1,0 +1,25 @@
+<div class="modal " role="dialog" style="overflow-y: scroll; display: block;" aria-hidden="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content"> 
+            
+            <div class="panel-body">
+
+                <img class="imageModal" [src]="content" [alt]="content">
+
+                <div class="row d-flex justify-content-center pt-3 pb-2">
+                    <div class="col-8 text-center d-grid">
+                        <button type="button" class="btn btn-primary" (click)="confirm()">{{ btnConfirm }}</button>
+                    </div> 
+                </div>
+                
+                <div class="row d-flex justify-content-center pt-3 pb-2">
+                    <div class="col-8 text-center">
+                        <button type="button" class="btn btn-secondary" (click)="cancel()">{{ btnCancel }}</button>
+                    </div> 
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

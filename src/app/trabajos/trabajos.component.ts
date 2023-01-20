@@ -22,6 +22,7 @@ export class TrabajosComponent implements OnInit {
     name: '',
     description: '',
     images: [],
+    deletedImages: [],
     isDeleted: false
   };
 
@@ -61,8 +62,8 @@ export class TrabajosComponent implements OnInit {
     formData.append('name', this.trabajoForm.get('name').value);
     formData.append('description', this.trabajoForm.get('description').value);
     
-    console.log(formData.get('name'));
-    console.log(formData.get('image[]'));
+    // console.log(formData.get('name'));
+    // console.log(formData.get('image[]'));
     if (this.isEditMode) {
       // formData.append('id', this.id.toString());
 

@@ -1,0 +1,43 @@
+.btn.close {
+    box-shadow: none;
+}
+
+.btn-primary {
+    /* color: #FFF;
+    background-color: #215785;
+    box-shadow: none;
+    border: none; */
+    color: #FFF;
+    background-color: #215785;
+    box-shadow: none;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.btn-primary:focus {
+    background-color: #0c304e;
+    box-shadow: none;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #215785;
+    box-shadow: none;
+    border: none;
+    size: 14px;
+}
+
+.btn-secondary:hover {
+    background-color: #D8E5EF;
+}
+
+.btn-secondary:hover {
+    box-shadow: #D8E5EF;
+}
+
+.font-reserva{
+    font-weight: 700;
+    color: #0ba83a;
+}

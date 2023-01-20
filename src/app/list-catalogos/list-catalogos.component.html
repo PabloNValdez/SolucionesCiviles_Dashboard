@@ -1,1 +1,28 @@
-<p>list-catalogos works!</p>
+
+<div class="container pt-5 pb-5">
+    <div class="row d-flex justify-content-center" *ngFor="let cat of allCatalogos | paginate: { itemsPerPage: 1, currentPage: p }">
+        <iframe style="width:900px;height:800px" [src]="saniti.bypassSecurityTrustResourceUrl(cat[1]) "  seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" ></iframe>
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-4">
+                <a class="btn-delete" (click)="deleteWork(cat[3])" type="button" title="Eliminar" *ngIf="!cat[4]">
+                    <span>Eliminar</span>
+                </a><br>
+                <a class="btn-delete" (click)="enableWork(cat)" type="button" title="Habilitar" *ngIf="cat[4]">
+                    <span>Habilitar</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row d-flex ">
+    <div class="col text-center">
+        <pagination-controls 
+        (pageChange)="p = $event" 
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+        >
+        </pagination-controls>
+    </div> 
+</div>
+

@@ -1,1 +1,40 @@
-<p>edit-trabajo works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <h3 class="card-title">Editar Trabajo</h3>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="trabajoForm">
+                        <div class="form-group">
+                            <input formControlName="name" type="text" class="form-control form-control-border" id="name" placeholder="Ingrese el nombre">
+                            <span *ngIf="validateControl('name') && hasError('name', 'required')">Debe ingresar el nombre</span>
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="description" type="text" class="form-control form-control-border" id="description" placeholder="Ingrese una descripción">
+                            <span *ngIf="validateControl('description') && hasError('description', 'required')">Debe ingresar una descripción</span>
+                        </div>
+                        <div class="form-group">
+                            <h5>Imágenes para agregar</h5>
+                            <input formControlName="image" #image type="file" id="image" (change)="onFileChange($event)" multiple>
+                        </div>
+                        <div class="row border-top">
+                            <h5>Imágenes actuales</h5>
+                                <div class="location-image">
+                                    <a *ngFor="let picture of savedImages" (click)="imageModal(picture)">
+                                        <img [src]="picture[1]" [alt]="picture" class="workImages img-fluid ps-1 pe-1">
+                                    </a>
+                                </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-primary" (click)="guardar()">Guardar</button>
+                    <a routerLink="/list-trabajos" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

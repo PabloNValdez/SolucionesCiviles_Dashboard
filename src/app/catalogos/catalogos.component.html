@@ -1,1 +1,27 @@
-<p>catalogos works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <h3 class="card-title">Agregar Catalogo</h3>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="catalogoForm">
+                        <div class="form-group">
+                            <input formControlName="name" type="text" class="form-control form-control-border" id="name" placeholder="Ingrese el nombre">
+                            <span *ngIf="validateControl('name') && hasError('name', 'required')">Debe ingresar el nombre</span>
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="link" type="text" class="form-control form-control-border" id="link" placeholder="Ingrese el link">
+                            <span *ngIf="validateControl('link') && hasError('link', 'required')">Debe ingresar el link del catalogo</span>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <button type="button" class="btn btn-primary" (click)="guardar()">Guardar</button>
+                    <a routerLink="/list-trabajos" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

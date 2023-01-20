@@ -64,7 +64,7 @@ export class ListTrabajosComponent implements OnInit {
         }*/
 
         this.listOfworks.push(trabajo);
-        console.log(this.listOfworks);
+        // console.log(this.listOfworks);
         
       });
       // this.work = [];

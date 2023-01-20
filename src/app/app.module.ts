@@ -14,6 +14,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthInterceptorService } from './Services/auth.interceptor.service';
+import { EditTrabajoComponent } from './edit-trabajo/edit-trabajo.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalConfirmationComponent } from './Modals/modal-confirmation/modal-confirmation.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { CatalogosComponent } from './catalogos/catalogos.component';
 
 export function tokenGetter() {
   return sessionStorage.getItem("token");
@@ -25,7 +30,10 @@ export function tokenGetter() {
     ListTrabajosComponent,
     TrabajosComponent,
     ListCatalogosComponent,
-    HomeComponent
+    HomeComponent,
+    EditTrabajoComponent,
+    ModalConfirmationComponent,
+    CatalogosComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +51,9 @@ export function tokenGetter() {
         //allowedDomains: ['asdasdad.com'], // -> descomentar para publicar
         disallowedRoutes: [],
       },
-    })
+    }),
+    NgbModule,
+    NgxPaginationModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

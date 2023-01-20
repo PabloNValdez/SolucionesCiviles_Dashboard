@@ -27,4 +27,13 @@ export class TrabajosService {
   updateWork(dto): Observable<any>{
     return this.http.post<Trabajo>(`${API_URL}/api/trabajo/update`, dto);
   }
+
+  updateWorkWIthDeletedImages(dto): Observable<any>{
+    return this.http.post<Trabajo>(`${API_URL}/api/trabajo/updateWithDeletedImages`, dto);
+  }
+
+  getWorkByID(id): Observable<any>{
+    return this.http.get(`${API_URL}/api/trabajo/${id}`);
+  }
+
 }
