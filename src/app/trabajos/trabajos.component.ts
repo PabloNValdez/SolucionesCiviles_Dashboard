@@ -61,25 +61,14 @@ export class TrabajosComponent implements OnInit {
 
     formData.append('name', this.trabajoForm.get('name').value);
     formData.append('description', this.trabajoForm.get('description').value);
-    
-    // console.log(formData.get('name'));
-    // console.log(formData.get('image[]'));
-    if (this.isEditMode) {
-      // formData.append('id', this.id.toString());
 
-      // this.trabajoService.update(formData).subscribe(response => {
-      //   this.toastr.success(response.message);
-      //   setTimeout(() => {
-      //     this.router.navigate(['/dashboard/list-shops-professionals']);
-      //   }, 1000);
-      // }, error => {
-      //   console.log(error);
-      // });
+    if (this.isEditMode) {
     } else {
       this.trabajoService.createWork(formData).subscribe(response => {
         this.toastr.success(response.message);
         setTimeout(() => {
-          window.location.reload(); 
+          //window.location.reload(); 
+          this.router.navigate(['./list-trabajos']);
         }, 2000);
       }, error => {
         console.log(error);

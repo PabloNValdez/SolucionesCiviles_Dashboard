@@ -47,8 +47,8 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ['localhost:7073'], //-> comentar para publicar
-        //allowedDomains: ['asdasdad.com'], // -> descomentar para publicar
+        //allowedDomains: ['localhost:7073'], //-> comentar para publicar
+        allowedDomains: ['https://solucionesenobrasciviles.com.ar/API'], // -> descomentar para publicar
         disallowedRoutes: [],
       },
     }),

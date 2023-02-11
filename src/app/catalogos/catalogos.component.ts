@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CatalogosService } from '../Services/catalogos.service';
 
@@ -13,7 +13,7 @@ export class CatalogosComponent implements OnInit {
 
   catalogoForm: FormGroup;
   id: number;
-  constructor(private toastr: ToastrService, private catalogosService: CatalogosService) { }
+  constructor(private toastr: ToastrService, private catalogosService: CatalogosService, private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -39,7 +39,8 @@ export class CatalogosComponent implements OnInit {
       this.catalogosService.createCatalogo(formData).subscribe(response => {
         this.toastr.success(response.message);
         setTimeout(() => {
-          window.location.reload(); 
+          //window.location.reload(); 
+          this.router.navigate(['./list-catalogos']);
         }, 2000);
       }, error => {
         console.log(error);
