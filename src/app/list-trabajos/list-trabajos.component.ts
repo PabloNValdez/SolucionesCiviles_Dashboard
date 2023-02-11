@@ -71,7 +71,7 @@ export class ListTrabajosComponent implements OnInit {
     this.trabajoService.deleteWork(id).subscribe(response => {
       this.toastrService.success(response.message);
       setTimeout(() => {
-        this.router.navigate(['./list-trabajos']);
+        this.router.navigate(['']);
       }, 1000);
     }, error => {
       this.toastrService.error(error);
@@ -90,7 +90,7 @@ export class ListTrabajosComponent implements OnInit {
     this.trabajoService.updateWork(formData).subscribe(response => {
       this.toastrService.success(response.message);
       setTimeout(() => {
-        this.router.navigate(['./list-trabajos']);
+        this.router.navigate(['']);
       }, 1000);
     }, error => {
       this.toastrService.error(error);

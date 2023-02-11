@@ -51,7 +51,7 @@ export class ListCatalogosComponent implements OnInit {
     this.catalogosService.updateCatalogo(formData).subscribe(response => {
       this.toastrService.success(response.message);
       setTimeout(() => {
-        this.router.navigate(['./list-catalogos']);
+        this.router.navigate(['']);
       }, 1000);
     }, error => {
       this.toastrService.error(error);
@@ -62,7 +62,7 @@ export class ListCatalogosComponent implements OnInit {
     this.catalogosService.deleteCatalogo(id).subscribe(response => {
       this.toastrService.success(response.message);
       setTimeout(() => {
-        this.router.navigate(['./list-catalogos']);
+        this.router.navigate(['']);
       }, 1000);
     }, error => {
       this.toastrService.error(error);
