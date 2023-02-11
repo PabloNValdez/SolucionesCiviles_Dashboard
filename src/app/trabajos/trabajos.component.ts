@@ -67,7 +67,6 @@ export class TrabajosComponent implements OnInit {
       this.trabajoService.createWork(formData).subscribe(response => {
         this.toastr.success(response.message);
         setTimeout(() => {
-          //window.location.reload(); 
           this.router.navigate(['./list-trabajos']);
         }, 2000);
       }, error => {

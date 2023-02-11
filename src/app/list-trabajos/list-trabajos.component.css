@@ -8,3 +8,7 @@
 .work-image:hover{
     transform: scale(1.01);
 }
+
+.separate {
+    padding-right: 15px;
+}

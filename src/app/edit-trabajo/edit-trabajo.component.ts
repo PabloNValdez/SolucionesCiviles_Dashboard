@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 import { TrabajosService } from '../Services/trabajos.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalImagesService } from '../Modals/modal-images.service';
 import { ModalConfirmationService } from '../Modals/modal-confirmation.service';
 import { ImageDto } from '../Models/trabajo.model';
@@ -31,7 +31,7 @@ export class EditTrabajoComponent implements OnInit {
   deletedImages: any [] = [];
 
   constructor(private trabajoService: TrabajosService, private toastr: ToastrService, private route: ActivatedRoute,
-    private modalImagesService: ModalImagesService, private modalConfirmationService: ModalConfirmationService) { }
+    private modalImagesService: ModalImagesService, private modalConfirmationService: ModalConfirmationService, private router: Router) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id')!;
@@ -59,8 +59,6 @@ export class EditTrabajoComponent implements OnInit {
       response.imagesDto.forEach(element => {
         let path = `${apiUrl}/${element.path}`;
         this.imagesUrl.push(path);
-        // console.log(element.path);
-
         let image: any [] = [];
         image[0]= element.id;
         image[1]=path;
@@ -100,14 +98,10 @@ export class EditTrabajoComponent implements OnInit {
             if (confirmed) {
               let image: any [] = [];
               image[0]= parseInt(picture[0]);
-             // image[1] = picture[1].replace(apiUrl+"/", '');
-
               this.deletedImages.push(image);
               console.log(this.deletedImages);  
-
               let eliminar = this.savedImages.findIndex(p => p == picture)
               this.savedImages.splice(eliminar,1);
-              //this.updateWork();
             } else {
             }
           })
@@ -138,7 +132,6 @@ export class EditTrabajoComponent implements OnInit {
     this.trabajoService.updateWorkWIthDeletedImages(formData).subscribe(response => {
       Swal.fire({
         title: "<h3 class='black' style='color:#215785'> "+response.message+"  </h3>",
-        // imageUrl: '../../assets/img/logo_solo.png',
         confirmButtonText: 'Volver',
         showDenyButton: false,
         buttonsStyling: false,
@@ -149,7 +142,7 @@ export class EditTrabajoComponent implements OnInit {
         }
       }).then((result) => {
         if (result.isConfirmed) {
-          window.location.reload(); 
+          this.router.navigate(['./list-trabajos']); 
         }
       });
     }, error => {

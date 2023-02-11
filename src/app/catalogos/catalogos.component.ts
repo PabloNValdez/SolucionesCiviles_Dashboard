@@ -39,7 +39,6 @@ export class CatalogosComponent implements OnInit {
       this.catalogosService.createCatalogo(formData).subscribe(response => {
         this.toastr.success(response.message);
         setTimeout(() => {
-          //window.location.reload(); 
           this.router.navigate(['./list-catalogos']);
         }, 2000);
       }, error => {

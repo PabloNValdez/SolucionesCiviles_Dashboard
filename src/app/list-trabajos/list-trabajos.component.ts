@@ -3,6 +3,7 @@ import { TrabajosService } from '../Services/trabajos.service';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { faL } from '@fortawesome/free-solid-svg-icons';
+import { ActivatedRoute, Router } from '@angular/router';
 
 const apiUrl = environment.apiUrl;
 @Component({
@@ -23,13 +24,12 @@ export class ListTrabajosComponent implements OnInit {
   datos: Array<any>=[];
   isDeleted: boolean;
 
-  constructor(private trabajoService: TrabajosService, private toastrService: ToastrService) { }
+  constructor(private trabajoService: TrabajosService, private toastrService: ToastrService, private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.trabajoService.getAllWorks().subscribe(respose =>{
       this.datos = respose;
       respose.forEach(element => {
-        //element.imagesDto[0].path = `${apiUrl}/${element.imagesDto[0].path}`; 
         
         var trabajo:Array<any> = [];
 
@@ -46,28 +46,14 @@ export class ListTrabajosComponent implements OnInit {
 
         element.imagesDto.forEach(e =>{
           var img = decodeURIComponent(`${apiUrl}/${e.path}`);
-          // console.log(img);
           images.push({image:img});
         })
-        // console.log(images);
         this.work[2] = images;
         trabajo[2]= images;
         trabajo[3] = element.id;
         trabajo[4] = element.isDeleted
-
-        /*if (trabajo[4] == true) {
-          this.isDeleted = true;
-          console.log('soyDeletedTrue'+this.isDeleted);
-        }else{
-          this.isDeleted = false;
-          console.log('soyDeletedFalse'+this.isDeleted);
-        }*/
-
-        this.listOfworks.push(trabajo);
-        // console.log(this.listOfworks);
-        
+        this.listOfworks.push(trabajo);     
       });
-      // this.work = [];
     });
   }
 
@@ -85,7 +71,7 @@ export class ListTrabajosComponent implements OnInit {
     this.trabajoService.deleteWork(id).subscribe(response => {
       this.toastrService.success(response.message);
       setTimeout(() => {
-        window.location.reload();
+        this.router.navigate(['./list-trabajos']);
       }, 1000);
     }, error => {
       this.toastrService.error(error);
@@ -104,7 +90,7 @@ export class ListTrabajosComponent implements OnInit {
     this.trabajoService.updateWork(formData).subscribe(response => {
       this.toastrService.success(response.message);
       setTimeout(() => {
-        window.location.reload();
+        this.router.navigate(['./list-trabajos']);
       }, 1000);
     }, error => {
       this.toastrService.error(error);

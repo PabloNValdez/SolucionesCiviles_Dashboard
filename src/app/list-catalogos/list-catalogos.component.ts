@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
 import { CatalogosService } from '../Services/catalogos.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-catalogos',
@@ -17,7 +18,8 @@ export class ListCatalogosComponent implements OnInit {
   p: number = 1;
   saniti: DomSanitizer;//Sanitiza los link, para hacerlos seguros
   catalogo:Array<any> = [];
-  constructor(private catalogosService: CatalogosService, private sanitizer: DomSanitizer, private toastrService: ToastrService) { }
+  constructor(private catalogosService: CatalogosService, private sanitizer: DomSanitizer, private toastrService: ToastrService,
+              private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.saniti= this.sanitizer;
@@ -49,7 +51,7 @@ export class ListCatalogosComponent implements OnInit {
     this.catalogosService.updateCatalogo(formData).subscribe(response => {
       this.toastrService.success(response.message);
       setTimeout(() => {
-        window.location.reload();
+        this.router.navigate(['./list-catalogos']);
       }, 1000);
     }, error => {
       this.toastrService.error(error);
@@ -60,7 +62,7 @@ export class ListCatalogosComponent implements OnInit {
     this.catalogosService.deleteCatalogo(id).subscribe(response => {
       this.toastrService.success(response.message);
       setTimeout(() => {
-        window.location.reload();
+        this.router.navigate(['./list-catalogos']);
       }, 1000);
     }, error => {
       this.toastrService.error(error);
