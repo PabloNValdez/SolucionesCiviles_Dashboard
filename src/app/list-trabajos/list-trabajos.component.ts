@@ -30,7 +30,6 @@ export class ListTrabajosComponent implements OnInit {
     this.trabajoService.getAllWorks().subscribe(respose =>{
       this.datos = respose;
       respose.forEach(element => {
-        
         var trabajo:Array<any> = [];
 
         trabajo[0] = element.name;
@@ -49,11 +48,22 @@ export class ListTrabajosComponent implements OnInit {
           images.push({image:img});
         })
         this.work[2] = images;
-        trabajo[2]= images;
+
+        if(images.length == 0){
+          var im:Array<object> = [];
+          im.push({image: '../../assets/img/imageNotFound.png'});
+          trabajo[2] = im;
+        }else{
+          trabajo[2]= images;
+        }
+
         trabajo[3] = element.id;
         trabajo[4] = element.isDeleted
-        this.listOfworks.push(trabajo);     
+
+        this.listOfworks.push(trabajo);
+    
       });
+
     });
   }
 
