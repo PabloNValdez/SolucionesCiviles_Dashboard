@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //apiUrl: 'https://localhost:7073'
-  apiUrl: 'https://solucionesenobrasciviles.com.ar/API'
+  apiUrl: 'https://localhost:7073'
+  // apiUrl: 'https://solucionesenobrasciviles.com.ar/API'
 };
 
 /*

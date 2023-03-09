@@ -7,6 +7,8 @@ import { TrabajosComponent } from './trabajos/trabajos.component';
 import { AuthGuard } from './guards/auth.guard';
 import { EditTrabajoComponent } from './edit-trabajo/edit-trabajo.component';
 import { CatalogosComponent } from './catalogos/catalogos.component';
+import { ListBannersComponent } from './list-banners/list-banners.component';
+import { BannersComponent } from './banners/banners/banners.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path: 'list-catalogos', component: ListCatalogosComponent, canActivate: [AuthGuard]},
   { path: 'edit-trabajo/:id', component: EditTrabajoComponent, canActivate: [AuthGuard]},
   { path: 'catalogos', component: CatalogosComponent, canActivate: [AuthGuard]},
+  { path: 'list-banners', component: ListBannersComponent, canActivate: [AuthGuard] },
+  { path: 'banners', component: BannersComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

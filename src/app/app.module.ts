@@ -19,6 +19,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalConfirmationComponent } from './Modals/modal-confirmation/modal-confirmation.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { CatalogosComponent } from './catalogos/catalogos.component';
+import { BannersComponent } from './banners/banners/banners.component';
+import { ListBannersComponent } from './list-banners/list-banners.component';
 
 export function tokenGetter() {
   return sessionStorage.getItem("token");
@@ -33,7 +35,9 @@ export function tokenGetter() {
     HomeComponent,
     EditTrabajoComponent,
     ModalConfirmationComponent,
-    CatalogosComponent
+    CatalogosComponent,
+    BannersComponent,
+    ListBannersComponent
   ],
   imports: [
     BrowserModule,

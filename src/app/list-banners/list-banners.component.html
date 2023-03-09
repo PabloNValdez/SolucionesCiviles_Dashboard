@@ -1,0 +1,34 @@
+<div class="container pt-5 pb-5">
+    <div *ngFor="let publi of publiImages | paginate: { itemsPerPage: 5, currentPage: p }">
+        <div class="row pt-5 d-block text-center justify-content-center"> 
+            <!-- Imagen -->
+            <div class="row justify-content-center">
+                <img [src]="publi[2][0].image" class="img-fluid banner">
+            </div>
+            <!-- Descripcion -->
+            <div class="row justify-content-center">
+                <span>{{publi[1]}}</span>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <a class="btn-delete" (click)="deleteBanner(publi[3])" type="button" title="Eliminar" *ngIf="!publi[4]">
+                        <span>Eliminar</span>
+                    </a><br>
+                    <a class="btn-delete" (click)="enableBanner(publi)" type="button" title="Habilitar" *ngIf="publi[4]">
+                        <span>Habilitar</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row d-flex ">
+    <div class="col text-center">
+        <pagination-controls 
+        (pageChange)="p = $event" 
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+        >
+        </pagination-controls>
+    </div> 
+</div>
